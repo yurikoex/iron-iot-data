@@ -7,7 +7,7 @@ import { routeApi } from './http-server/api'
 import { name, version } from '../package.json'
 process.title = `${name}@${version}`
 
-const port = 9967
+const port = 9966
 
 const logger = new Subject()
 

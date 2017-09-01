@@ -120,10 +120,15 @@ export const createDevicesApi = ({ logger }) => {
 		filterStr: filterStr[filterStr.length - 1] == '/'
 			? filterStr.substring(0, filterStr.length - 1)
 			: filterStr
-	}).then(() => console.log(devices)).catch(err => logger.next([ 'ERROR', err.stack ]))
+	}).catch(err => logger.next([ 'ERROR', err.stack ]))
 
 	return {
 		createRoutes: () => [
+			({
+				method: 'GET',
+				path: `/api/devices`,
+				handler: (req, reply) => reply(devices)
+			}),
 			({
 				method: [ 'GET', 'DELETE' ],
 				path: `/api/devices/{model}/{iteration}/{filter*}`,
